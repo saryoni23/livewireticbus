@@ -12,7 +12,6 @@ class BeritaForm extends Form
 {
     public ?Berita $berita;
 
-    #[Locked]
     public $id;
 
     #[Rule('required|min:3', as: 'Judul harus diisi /')]

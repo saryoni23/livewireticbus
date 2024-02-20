@@ -19,12 +19,15 @@ class BeritaTabel extends Component
     $sortBy     ='berita.id',
     $sortDirection = 'desc';
     #[On('dispatch-berita-create-save')]
+    #[On('dispatch-berita-create-edit')]
+    #[On('dispatch-berita-delete-del')]
     public function render()
     {
         return view('livewire.berita-tabel',[
             'data' => Berita::where('id', 'like','%'.$this->form->id.'%')
             ->where('judul', 'like','%'.$this->form->judul.'%')
             ->where('isi', 'like','%'.$this->form->isi.'%')
+            ->where('image', 'like','%'.$this->form->isi.'%')
             ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate($this->paginate),
 
