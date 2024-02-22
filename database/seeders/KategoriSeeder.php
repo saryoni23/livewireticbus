@@ -13,8 +13,8 @@ class KategoriSeeder extends Seeder
      */
     public function run(): void
     {
-        Kategori::create(['nama_kategori'   => 'Ekonomi']);
-        Kategori::create(['nama_kategori'   => 'AC']);
-        Kategori::create(['nama_kategori'   => 'Excekutif']);
+        Kategori::create(['name'   => 'Ekonomi']);
+        Kategori::create(['name'   => 'AC']);
+        Kategori::create(['name'   => 'Excekutif']);
     }
 }

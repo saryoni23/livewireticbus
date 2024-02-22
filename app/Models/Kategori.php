@@ -11,7 +11,7 @@ class Kategori extends Model
     use HasFactory;
     public $table = 'tbl_kategori';
     protected $fillable = [
-        'nama_kategori'
+        'name'
     ];
 
     public function tiketKategori():HasMany

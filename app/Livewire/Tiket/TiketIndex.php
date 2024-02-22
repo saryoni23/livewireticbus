@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Tiket;
 
 use Illuminate\View\View;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-class BeritaIndex extends Component
+class TiketIndex extends Component
 {
     #[Title('Berita')]
     public function render():View
     {
-        return view('livewire.berita-index');
+        return view('livewire.tiket.tiket-index');
     }
 }

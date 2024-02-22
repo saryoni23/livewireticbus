@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admins\AdminDashboardController;
-use App\Livewire\BeritaIndex;
+use App\Livewire\Berita\BeritaIndex;
+use App\Livewire\Kategori\KategoriIndex;
+use App\Livewire\Rute\RuteIndex;
+use App\Livewire\Tiket\TiketIndex;
 use App\Models\Berita;
+use App\Models\Rute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,4 +38,7 @@ Route::prefix('admin')->middleware(['auth:sanctum','verified'])->name('admin.')-
 (function(){
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('berita', BeritaIndex::class)->name('berita.index');
+    Route::get('kategori', KategoriIndex::class)->name('kategori.index');
+    Route::get('rute', RuteIndex::class)->name('rute.index');
+    // Route::get('tiket', TiketIndex::class)->name('tiket.index');
 });

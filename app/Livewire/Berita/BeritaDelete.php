@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Berita;
 
-use App\Livewire\BeritaTabel;
+use App\Livewire\Berita\BeritaTabel;
 use App\Models\Berita;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
@@ -40,6 +40,6 @@ class  BeritaDelete extends Component
 
     public function render()
     {
-        return view('livewire.berita-delete');
+        return view('livewire.berita.berita-delete');
     }
 }

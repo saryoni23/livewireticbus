@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
+                        <x-application-mark class="inline-flex h-auto w-auto" />
                     </a>
                 </div>
 
@@ -15,11 +15,19 @@
                     <x-nav-link href="{{ route('dashboard') }}" wire:navigate :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    
                     <x-nav-link href="{{ route('admin.berita.index') }}" wire:navigate :active="request()->routeIs('admin.berita.index')">
                         {{ __('Berita') }}
                     </x-nav-link>
+
+                    <x-nav-link href="{{ route('admin.kategori.index') }}" wire:navigate :active="request()->routeIs('admin.kategori.index')">
+                        {{ __('Kategori') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('admin.rute.index') }}" wire:navigate :active="request()->routeIs('admin.rute.index')">
+                        {{ __('Rute') }}
+                    </x-nav-link>
+
+
                 </div>
             </div>
 
@@ -151,6 +159,14 @@
             <x-responsive-nav-link href="{{ route('admin.berita.index') }}" wire:navigate :active="request()->routeIs('admin.berita.index')">
                 {{ __('Berita') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('admin.kategori.index') }}" wire:navigate :active="request()->routeIs('admin.kategori.index')">
+                {{ __('Kategori') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('admin.rute.index') }}" wire:navigate :active="request()->routeIs('admin.rute.index')">
+                {{ __('Rute') }}
+            </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->

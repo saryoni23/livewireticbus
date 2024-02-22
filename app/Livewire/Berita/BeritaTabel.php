@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Berita;
 
 use App\Livewire\Forms\BeritaForm;
 use App\Models\Berita;
@@ -23,7 +23,7 @@ class BeritaTabel extends Component
     #[On('dispatch-berita-delete-del')]
     public function render()
     {
-        return view('livewire.berita-tabel',[
+        return view('livewire.berita.berita-tabel',[
             'data' => Berita::where('id', 'like','%'.$this->form->id.'%')
             ->where('judul', 'like','%'.$this->form->judul.'%')
             ->where('isi', 'like','%'.$this->form->isi.'%')

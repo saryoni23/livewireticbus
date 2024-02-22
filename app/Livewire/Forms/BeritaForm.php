@@ -3,9 +3,7 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Berita;
-use Livewire\Attributes\Locked;
 use Livewire\Attributes\Rule;
-use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class BeritaForm extends Form

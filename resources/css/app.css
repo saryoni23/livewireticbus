@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import '@tailwind/base';
+@import '@tailwind/components';
+
+@import './tom-select.css';   
+
+@import '@tailwind/utilities;'; */
+
 [x-cloak] {
     display: none;
 }

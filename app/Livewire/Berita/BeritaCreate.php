@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Berita;
 
 
-use App\Models\Berita;
 use App\Livewire\Forms\BeritaForm;
 use Livewire\Component;
 
@@ -28,6 +27,6 @@ class BeritaCreate extends Component
 
     public function render()
     {
-        return view('livewire.berita-create');
+        return view('livewire.berita.berita-create');
     }
 }

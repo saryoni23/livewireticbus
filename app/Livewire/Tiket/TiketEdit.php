@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Tiket;
 
 use App\Livewire\Forms\BeritaForm;
-use App\Livewire\BeritaTable;
+use App\Livewire\Berita\BeritaTabel;
 use App\Models\Berita;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class BeritaEdit extends Component
+class TiketEdit extends Component
 {
     public BeritaForm $form;
 
@@ -30,10 +30,10 @@ class BeritaEdit extends Component
         ? $this->dispatch('notify', title:'success', message:'Data Berhasil Update')
         :$this->dispatch('notify', title:'failed', message:'Data Gagal Update');
 
-        $this->dispatch('dispatch-berita-create-edit')->to(BeritaTable::class);
+        $this->dispatch('dispatch-berita-create-edit')->to(BeritaTabel::class);
     }
     public function render()
     {
-        return view('livewire.berita-edit');
+        return view('livewire.tiket.tiket-edit');
     }
 }
