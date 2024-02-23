@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Tiket;
 
-use App\Livewire\Forms\BeritaForm;
-use App\Models\Berita;
+use App\Livewire\Forms\TiketForm;
+use App\Models\Tiket;
 use App\Traits\WithSorting;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -13,24 +13,36 @@ class TiketTabel extends Component
 {
     use WithPagination;
     use WithSorting;
-    public BeritaForm $form;
+    public TiketForm $form;
     public    
     $paginate   =10,
-    $sortBy     ='berita.id',
+    $sortBy     ='tbl_tiket.id',
     $sortDirection = 'desc';
-    #[On('dispatch-berita-create-save')]
-    #[On('dispatch-berita-create-edit')]
-    #[On('dispatch-berita-delete-del')]
+    #[On('dispatch-tiket-create-save')]
+    #[On('dispatch-tiket-create-edit')]
+    #[On('dispatch-tiket-delete-del')]
     public function render()
-    {
-        return view('livewire.tiket.tiket-tabel',[
-            'data' => Berita::where('id', 'like','%'.$this->form->id.'%')
-            ->where('judul', 'like','%'.$this->form->judul.'%')
-            ->where('isi', 'like','%'.$this->form->isi.'%')
-            ->where('image', 'like','%'.$this->form->isi.'%')
-            ->orderBy($this->sortBy, $this->sortDirection)
-            ->paginate($this->paginate),
+{
+    $tiket = Tiket::
+    select(
+        'tbl_tiket.id as tiket_id', 
+        'tbl_tiket.nama_tiket', 
+        'tbl_tiket.nama_supir', 
+        'tbl_tiket.harga', 
+        'tbl_tiket.jumlah_tiket', 
+        'r.id as rute_id', 
+        'k.id as kategori_id'
+    )
+    ->join('tbl_rute as r', 'r.id', 'tbl_tiket.rute_id')
+    ->join('tbl_kategori as k', 'k.id', 'tbl_tiket.kategori_id')
+    ->where('nama_tiket', 'like', '%' . $this->form->nama_tiket . '%') 
+    ->where('nama_supir', 'like', '%' . $this->form->nama_supir . '%')
+    ->orderBy($this->sortBy, $this->sortDirection)
+    ->paginate($this->paginate);
 
-        ]);
-    }
-}
+return view('livewire.tiket.tiket-tabel', [
+    'tiket' => $tiket,
+]);
+
+
+}}

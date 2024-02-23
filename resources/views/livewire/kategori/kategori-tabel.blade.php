@@ -12,11 +12,12 @@
                 <th class='p-2 border border-spacing-1'>#</th>
                 <th class='p-2 whitespace-nowrap border border-spacing-1'>Action</th>
                 <th @click="$wire.sortField('id')" class='p-2 whitespace-nowrap border border-spacing-1 cursor-pointer'>
-                    <x-sort :$sortDirection :$sortBy :field="'id'" />ID</th>
-                <th @click="$wire.sortField('judul')"
+                    <x-sort :$sortDirection :$sortBy :field="'id'" />ID
+                </th>
+                <th @click="$wire.sortField('name')"
                     class='p-2 whitespace-nowrap border border-spacing-1 cursor-pointer'>
-                    <x-sort :$sortDirection :$sortBy :field="'judul'" />Nama Kategori</th>
-
+                    <x-sort :$sortDirection :$sortBy :field="'name'" />Nama Tipe Bus
+                </th>
             </tr>
             <tr>
                 <td></td>

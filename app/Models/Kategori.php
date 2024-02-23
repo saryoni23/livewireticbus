@@ -18,4 +18,8 @@ class Kategori extends Model
     {
         return $this->hasMany(Tiket::class);
     }
+    public function serviceKategori():HasMany
+    {
+        return $this->hasMany(Tiket::class);
+    }
 }

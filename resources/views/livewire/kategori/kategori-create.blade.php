@@ -1,9 +1,9 @@
 <div>
-    <x-button @click="$wire.modalKategoriCreate = true">Create Kategori</x-button>
+    <x-button @click="$wire.modalKategoriCreate = true">Create Tipe Bus</x-button>
    
     <x-dialog-modal wire:model.live="modalKategoriCreate" wire:click="$set('modalKategoriCreate', false)" submit="save">
         <x-slot name="title">
-            Form Kategori
+            Form Tambah TIpe Bus
         </x-slot>
 
         <x-slot name="content">
@@ -11,7 +11,7 @@
 
             <!-- name -->
             <div class="col-span-12">
-                <x-label for="form.name" value="name"/>
+                <x-label for="form.name" value="Nama Tipe Bus"/>
                 <x-input wire:model="form.name" id="form.name" type="text" class="mt-1 w-full" require autocomplete="form.name"/>
                 <x-input-error for="form.name" class="mt-1"/>
             </div>

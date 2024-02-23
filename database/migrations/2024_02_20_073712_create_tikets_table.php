@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('tbl_tiket', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id');
             $table->foreignId('rute_id');
             $table->foreignId('kategori_id');
             $table->string('nama_tiket');

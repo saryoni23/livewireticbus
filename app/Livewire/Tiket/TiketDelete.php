@@ -2,44 +2,45 @@
 
 namespace App\Livewire\Tiket;
 
-use App\Livewire\Berita\BeritaTabel;
-use App\Models\Berita;
+use App\Livewire\Tiket\TiketTabel;
+use App\Models\Tiket;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class  BeritaDelete extends Component
+class  TiketDelete extends Component
 {   
     #[Locked]
     public $id;
     #[Locked]
-    public $judul;
+    public $nama_tiket;
 
-    public $modalBeritaDelete = false;
+    public $modalTiketDelete = false;
 
-    #[On('dispatch-berita-table-delete')]
-    public function set_berita($id, $judul){
+    #[On('dispatch-tiket-table-delete')]
+    public function set_tiket($id, $nama){
         $this->id       = $id;
-        $this->judul    = $judul;
+        $this->nama_tiket    = $nama;
 
-        $this->modalBeritaDelete= true;
+        $this->modalTiketDelete= true;
     }
 
-    public function del(){
+    public function del()
+    {
+        try{
+            $del = Tiket::destroy($this->id);
+            $this->dispatch('notify', title:'success', message:'Data Berhasil Dihapus');
 
-        $del = Berita::destroy($this->id);
+            $this->modalTiketDelete=false;
 
-        ($del)
-        ? $this->dispatch('notify', title:'success', message:'Data Berhasil Dihapus')
-        :$this->dispatch('notify', title:'failed', message:'Data Gagal Dihapus');
-
-        $this->modalBeritaDelete=false;
-
-        $this->dispatch('dispatch-berita-delete-del')->to(BeritaTabel::class);
+            $this->dispatch('dispatch-tiket-delete-del')->to(TiketTabel::class);
+        }catch(\Exception $e){
+            $this->dispatch('notify', title:'failed', message:'Data Gagal Dihapus');
+        }
     }
 
     public function render()
     {
-        return view('class TiketDelete');
+        return view('livewire.tiket.tiket-delete');
     }
 }

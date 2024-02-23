@@ -16,34 +16,34 @@ class TiketForm extends Form
 
     public $id;
 
-    // #[Rule('required', as: 'User')]
-    // public $user;
-    
     #[Rule('required', as: 'Kategori')]
     public $kategori;
     
     #[Rule('required', as: 'Rute')]
     public $rute;
-
-    public function setTiket(Tiket $tiket){
-        $this->tiket = $tiket;
-
-        $this->id       = $tiket->id;
-        // $this->user     = $tiket->user->id;
-        $this->kategori = $tiket->kategori->id;
-        $this->rute     = $tiket->rute->id;
-    }
-
-    // public function setUser(): array
-    // {
-    //     $setUser    = [];
-    //     $user       = User::select('id','name')->get();
-    //     foreach ($user as $ind => $data) {
-    //         $setUser[$ind] = ['id' => $data->id,'name'=>$data->name];
-    //     }
-    //     return $setUser;
-    // }
     
+    #[Rule('required', as: 'Nama Tiket')]
+    public $nama_tiket;
+    
+    #[Rule('required', as: 'Nama Supir')]
+    public $nama_supir;
+    #[Rule('required', as: 'Harga Satuan Tiket')]
+    public $harga;
+    #[Rule('required', as: 'Jumlah Tiket')]
+    public $jumlah_tiket;
+
+    public function setTiket(Tiket $tiket):void
+    {
+        $this->tiket    = $tiket;
+
+        $this->id           = $tiket->id;
+        $this->kategori     = $tiket->kategori->id;
+        $this->rute         = $tiket->rute->id;
+        $this->nama_tiket   = $tiket->nama_tiket;
+        $this->nama_supir   = $tiket->nama_supir;
+        $this->harga        = $tiket->harga;
+        $this->jumlah_tiket = $tiket->jumlah_tiket;
+    }
 
     public function setKategori(): array
     {
@@ -58,7 +58,7 @@ class TiketForm extends Form
     public function setRute(): array
     {
         $setRute    = [];
-        $Rutes      = Rute::select('id','kota_asal')->where('kategori_id', $this->kategori)->get();
+        $Rutes      = Rute::select('id','kota_asal')->get();
         foreach ($Rutes as $ind => $data) {
             $setRute[$ind] = ['id' => $data->id,'kota_asal'=>$data->kota_asal];
         }
@@ -69,9 +69,12 @@ class TiketForm extends Form
     public function store():void
     {
         Tiket::create([
-            // 'user_id'       => $this->user,
-            'kategori_id'   => $this->kategori,
             'rute_id'       => $this->rute,
+            'kategori_id'   => $this->kategori,
+            'nama_tiket'    => $this->nama_tiket,
+            'nama_supir'    => $this->nama_supir,
+            'harga'         => $this->harga,
+            'jumlah_tiket'  => $this->jumlah_tiket,
         ]);
     }
 
@@ -79,9 +82,12 @@ class TiketForm extends Form
     {
         $this->tiket->where('id', $this->id)
             ->update([
-            'user_id'       => $this->user,
             'kategori_id'   => $this->kategori,
             'rute_id'       => $this->rute,
+            'nama_tiket'    => $this->nama_tiket,
+            'nama_supir'    => $this->nama_supir,
+            'harga'         => $this->harga,
+            'jumlah_tiket'  => $this->jumlah_tiket,
             ]);
     }
 }

@@ -1,7 +1,11 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <x-slot name="logo">
+                <div class="flex flex-row gap-4">
+                <x-authentication-card-logo /> 
+                <h1 class='text-3xl font-bold'> Moria</h1>
+            </div>
         </x-slot>
 
         <x-validation-errors class="mb-4" />

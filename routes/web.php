@@ -1,12 +1,17 @@
 <?php
 
 use App\Http\Controllers\Admins\AdminDashboardController;
+use App\Http\Controllers\Controller;
 use App\Livewire\Berita\BeritaIndex;
 use App\Livewire\Kategori\KategoriIndex;
 use App\Livewire\Rute\RuteIndex;
+use App\Livewire\Service\ServiceIndex;
 use App\Livewire\Tiket\TiketIndex;
+use App\Livewire\Transaksi\TransaksiIndex;
 use App\Models\Berita;
 use App\Models\Rute;
+use App\Models\Service;
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +25,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     // return view('welcome');
+//     return view('halaman_depan.layout.index');
+// });
+
+Route::get('/',         [Controller::class, 'index'])->name('Home');
+Route::get('/blog',     [Controller::class, 'blog'])->name('Blog');
+Route::get('/blog/{id}',  [Controller::class, 'blogshow']);
+Route::get('/tiket',    [Controller::class, 'tiket'])->name('Tiket');
+Route::get('/company',  [Controller::class, 'company'])->name('Company');
 
 Route::middleware([
     'auth:sanctum',
@@ -40,5 +52,7 @@ Route::prefix('admin')->middleware(['auth:sanctum','verified'])->name('admin.')-
     Route::get('berita', BeritaIndex::class)->name('berita.index');
     Route::get('kategori', KategoriIndex::class)->name('kategori.index');
     Route::get('rute', RuteIndex::class)->name('rute.index');
-    // Route::get('tiket', TiketIndex::class)->name('tiket.index');
+    Route::get('tiket', TiketIndex::class)->name('tiket.index');
+    Route::get('transaksi', TransaksiIndex::class)->name('transaksi.index');
+    Route::get('service', ServiceIndex::class)->name('service.index');
 });

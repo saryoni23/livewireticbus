@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class TiketIndex extends Component
 {
-    #[Title('Berita')]
+    #[Title('Tiket')]
     public function render():View
     {
         return view('livewire.tiket.tiket-index');

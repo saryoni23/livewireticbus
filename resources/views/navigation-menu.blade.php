@@ -21,17 +21,28 @@
                     </x-nav-link>
 
                     <x-nav-link href="{{ route('admin.kategori.index') }}" wire:navigate :active="request()->routeIs('admin.kategori.index')">
-                        {{ __('Kategori') }}
+                        {{ __('Tipe Bus') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('admin.rute.index') }}" wire:navigate :active="request()->routeIs('admin.rute.index')">
                         {{ __('Rute') }}
                     </x-nav-link>
-
+                    <x-nav-link href="{{ route('admin.tiket.index') }}" wire:navigate :active="request()->routeIs('admin.tiket.index')">
+                        {{ __('Tiket ') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('admin.transaksi.index') }}" wire:navigate :active="request()->routeIs('admin.transaksi.index')">
+                        {{ __('Transaksi ') }}
+                    </x-nav-link>
+                    <!-- <x-nav-link href="{{ route('admin.service.index') }}" wire:navigate :active="request()->routeIs('admin.service.index')">
+                        {{ __('Service ') }}
+                    </x-nav-link> -->
+                    
 
                 </div>
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <x-buttondark/>
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ms-3 relative">
@@ -137,6 +148,8 @@
                 </div>
             </div>
 
+            
+
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
@@ -161,12 +174,21 @@
             </x-responsive-nav-link>
 
             <x-responsive-nav-link href="{{ route('admin.kategori.index') }}" wire:navigate :active="request()->routeIs('admin.kategori.index')">
-                {{ __('Kategori') }}
+                {{ __('Tipe Bus') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('admin.rute.index') }}" wire:navigate :active="request()->routeIs('admin.rute.index')">
                 {{ __('Rute') }}
             </x-responsive-nav-link>
-
+            <x-responsive-nav-link href="{{ route('admin.tiket.index') }}" wire:navigate :active="request()->routeIs('admin.tiket.index')">
+                {{ __('Tiket') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('admin.transaksi.index') }}" wire:navigate :active="request()->routeIs('admin.transaksi.index')">
+                {{ __('Transaksi') }}
+            </x-responsive-nav-link>
+            <!-- <x-responsive-nav-link href="{{ route('admin.service.index') }}" wire:navigate :active="request()->routeIs('admin.service.index')">
+                {{ __('Service') }}
+            </x-responsive-nav-link> -->
+            
         </div>
 
         <!-- Responsive Settings Options -->

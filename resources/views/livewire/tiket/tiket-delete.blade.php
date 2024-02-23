@@ -1,16 +1,17 @@
 <div>
    
-    <x-dialog-modal wire:model.live="modalBeritaDelete" wire:click="$set('modalBeritaDelete', false)" submit="edit">
+    <x-dialog-modal wire:model.live="modalTiketDelete" wire:click="$set('modalTiketDelete', false)" submit="edit">
         <x-slot name="title">
-            Delete Berita
+            Delete Tiket
         </x-slot>
 
         <x-slot name="content">
-        <p>Apakah Anda Ingin Menghapus Data dengan ID:{{ $id }} dan {{ $judul }}</p>
+
+        <p>Apakah Anda Ingin Menghapus Data dengan ID:{{ $id }} dan {{ $nama_tiket }}</p>
         </x-slot>
 
         <x-slot name="footer">
-            <x-secondary-button @click="$wire.modalBeritaDelete = false" wire:loading.attr="disabled">
+            <x-secondary-button @click="$wire.modalTiketDelete = false" wire:loading.attr="disabled">
                 Batal
             </x-secondary-button>
 

@@ -3,30 +3,33 @@
 namespace App\Livewire\Tiket;
 
 
-use App\Livewire\Forms\BeritaForm;
+use App\Livewire\Forms\TiketForm;
+use App\Models\Kategori;
+use App\Models\Rute;
 use Livewire\Component;
 
 class TiketCreate extends Component
 {
-    public BeritaForm $form;
+    public TiketForm $form;
 
-    public $modalBeritaCreate = false;
+    public $modalTiketCreate = false;
 
     public function save(){
 
         $this->validate();
+        try{
+            $this->form->store();
+            $this->dispatch('notify', title:'success', message:'Data Berhasil Disimpan');
+            $this->dispatch('dispatch-tiket-create-save')->to(TiketTabel::class);
+            $this->dispatch('set-reset');
+        }catch(\Exception $e){
+            $this->dispatch('notify', title:'failed', message:'Data Gagal Disimpan');
+        }
 
-        $simpan = $this->form->store();
-
-        is_null($simpan)
-        ? $this->dispatch('notify', title:'success', message:'Data Berhasil Disimpan')
-        :$this->dispatch('notify', title:'failed', message:'Data Gagal Disimpan');
-
-        $this->dispatch('dispatch-berita-create-save')->to(BeritaTabel::class);
-    }
-
+    }  
     public function render()
     {
-        return view('livewire.tiket.tiket-create');
+
+        return view('livewire.tiket.tiket-create',['rute' => Rute::all(), 'kategori'=> Kategori::all()]);
     }
 }

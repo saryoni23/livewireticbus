@@ -6,7 +6,7 @@
         </x-slot>
 
         <x-slot name="content">
-        <p>Apakah Anda Ingin Menghapus Data dengan ID:{{ $id }} dan Nama Kategori:{{ $name }} </p>
+        <p>Apakah Anda Ingin Menghapus Data dengan ID:{{ $id }} dan Nama Tipe:{{ $name }} </p>
         </x-slot>
 
         <x-slot name="footer">
