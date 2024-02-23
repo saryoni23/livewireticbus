@@ -26,16 +26,20 @@
                 <!-- Tiket -->
                 <div class="col-span-12">
                     <x-label for="form.tiket" value="Rute Tiket" />
-                    <x-select wire:model="form.tiket" id="form.tiket" type="text" class="mt-1 w-full" required autocomplete="form.tiket">
+                    <x-select wire:model="form.tiket" id="form.tiket" type="text" class="mt-1 w-full" required
+                        autocomplete="form.tiket">
                         <option></option>
                         @foreach($tiket as $tk)
-                        <option value="{{ $tk->id }}" data-harga="{{ $tk->harga }}">{{ $tk->nama_tiket }} ,Supir: {{ $tk->nama_supir }}, Tipe
-                            : {{ $tk->kategori->name }}, Harga:{{ $tk->harga }},
+                        <option value="{{ $tk->id }}" data-harga="{{ $tk->harga }}"
+                            data-jumlah="{{ $tk->jumlah_tiket }}">{{ $tk->nama_tiket }} ,Supir: {{ $tk->nama_supir }},
+                            Tipe
+                            : {{ $tk->kategori->name }}, Harga:{{ $tk->harga }}, Jumlah Tiket: {{ $tk->jumlah_tiket }}
                         </option>
                         @endforeach
                     </x-select>
-                    <x-input-error for="form.rute" class="mt-1" />
+                    <x-input-error for="form.tiket" class="mt-1" />
                 </div>
+
 
                 <!-- Jumlah Kursi -->
                 <div class="col-span-12">
@@ -56,7 +60,8 @@
                 <!-- Total Bayar -->
                 <div class="col-span-12">
                     <x-label for="form.total_bayar" value="Total Bayar" />
-                    <x-input id="form.total_bayar" type="text" class="mt-1 w-full" disabled autocomplete="form.total_bayar" />
+                    <x-input id="form.total_bayar" type="text" class="mt-1 w-full" disabled
+                        autocomplete="form.total_bayar" />
                 </div>
             </div>
         </x-slot>
@@ -74,6 +79,23 @@
 </div>
 
 <script>
+    var selectTiket = document.getElementById('form.tiket');
+    var inputJumlahKursi = document.getElementById('form.jumlah_kursi');
+
+    selectTiket.addEventListener('change', function () {
+        var selectedOption = selectTiket.options[selectTiket.selectedIndex];
+        var maxJumlah = selectedOption.getAttribute('data-jumlah');
+        inputJumlahKursi.setAttribute('max', maxJumlah);
+    });
+
+    inputJumlahKursi.addEventListener('change', function () {
+        // Menampilkan total bayar di input total bayar
+        // ...
+    });
+
+
+
+
     // Mendapatkan elemen select tiket
     var selectTiket = document.getElementById('form.tiket');
 
@@ -82,7 +104,7 @@
     var inputTotalBayar = document.getElementById('form.total_bayar');
 
     // Menambahkan event listener untuk menghitung total bayar setiap kali opsi tiket dipilih
-    selectTiket.addEventListener('change', function() {
+    selectTiket.addEventListener('change', function () {
         // Mendapatkan harga tiket dari opsi yang dipilih
         var hargaTiket = selectTiket.options[selectTiket.selectedIndex].getAttribute('data-harga');
 
@@ -92,9 +114,13 @@
         // Menampilkan total bayar di input total bayar
         inputTotalBayar.value = totalBayar;
     });
+
+
+
+
 
     // Menambahkan event listener untuk menghitung total bayar setiap kali jumlah kursi berubah
-    inputJumlahKursi.addEventListener('change', function() {
+    inputJumlahKursi.addEventListener('change', function () {
         // Mendapatkan harga tiket dari opsi yang dipilih
         var hargaTiket = selectTiket.options[selectTiket.selectedIndex].getAttribute('data-harga');
 
@@ -104,4 +130,5 @@
         // Menampilkan total bayar di input total bayar
         inputTotalBayar.value = totalBayar;
     });
+
 </script>

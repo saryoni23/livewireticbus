@@ -23,8 +23,8 @@
                     <x-sort :sortDirection="$sortDirection" :sortBy="$sortBy" field="rute_id" />Rute</th>
                 <th @click="$wire.sortField('kategori_id')" class="p-2 whitespace-nowrap border border-spacing-1 cursor-pointer">
                     <x-sort :sortDirection="$sortDirection" :sortBy="$sortBy" field="kategori_id" />Kategori</th>
-                <th class="p-2 whitespace-nowrap border border-spacing-1">
-                    <x-sort :sortDirection="$sortDirection" :sortBy="$sortBy" field="kategori_id" />Jumlah Tiket</th>
+                <th @click="$wire.sortField('jumlah_tiket')" class="p-2 whitespace-nowrap border border-spacing-1 cursor-pointer">
+                    <x-sort :sortDirection="$sortDirection" :sortBy="$sortBy" field="jumlah_tiket" />Jumlah Tiket</th>
             </tr>
         </thead>
         <tbody>

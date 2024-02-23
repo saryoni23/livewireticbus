@@ -30,6 +30,8 @@ class TiketCreate extends Component
     public function render()
     {
 
-        return view('livewire.tiket.tiket-create',['rute' => Rute::all(), 'kategori'=> Kategori::all()]);
+        return view('livewire.tiket.tiket-create',
+        ['rute' => Rute::all(),
+         'kategori'=> Kategori::all()]);
     }
 }

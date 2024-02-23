@@ -23,14 +23,24 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             </div>
 
-            <div class="mt-4">
+            <div class="relative mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-inputpassword type="password" name="password" id="password" placeholder="••••••••"
+                    required />
+                <button type="button" id="togglePassword" class="absolute inset-y-10 right-0 flex items-center pr-3 focus:outline-none">
+                    <span id="toggleButtonText" class="text-gray-500 dark:text-white">Tampilkan</span>
+                </button>
             </div>
+    
 
-            <div class="mt-4">
+            <div class="relative mt-4 ">
                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <x-inputpassword id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="••••••••" />
+                <button type="button" id="toggleConfirmPassword"
+                class="absolute inset-y-12 right-0 flex items-center pr-3 focus:outline-none">
+                <span id="toggleConfirmPasswordText"
+                    class="text-gray-500 dark:text-white">Tampilkan</span>
+            </button>
             </div>
             <div class="hidden">
                 <x-input id="password" class="block mt-1 w-full" type="password" name="is_admin"  />
@@ -65,3 +75,33 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
+<script>
+    const passwordInput = document.getElementById("password");
+    const toggleButton = document.getElementById("togglePassword");
+    const toggleButtonText = document.getElementById("toggleButtonText");
+    
+    toggleButton.addEventListener("click", function() {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleButtonText.textContent = "Sembunyikan";
+        } else {
+            passwordInput.type = "password";
+            toggleButtonText.textContent = "Tampilkan";
+        }
+    });
+    
+    
+    const confirmPasswordInput = document.getElementById("password_confirmation");
+    const toggleConfirmPasswordButton = document.getElementById("toggleConfirmPassword");
+    const toggleConfirmPasswordText = document.getElementById("toggleConfirmPasswordText");
+
+    toggleConfirmPasswordButton.addEventListener("click", function () {
+        if (confirmPasswordInput.type === "password") {
+            confirmPasswordInput.type = "text";
+            toggleConfirmPasswordText.textContent = "Sembunyikan";
+        } else {
+            confirmPasswordInput.type = "password";
+            toggleConfirmPasswordText.textContent = "Tampilkan";
+        }
+    });
+    </script>

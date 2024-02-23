@@ -23,9 +23,12 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4 relative">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <button type="button" id="togglePassword" class="absolute inset-y-10 right-0 flex items-center pr-3 focus:outline-none">
+                    <span id="toggleButtonText" class="text-gray-500 dark:text-white">Tampilkan</span>
+                </button>
             </div>
 
             <div class="block mt-4">
@@ -49,3 +52,19 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
+
+<script>
+    const passwordInput = document.getElementById("password");
+    const toggleButton = document.getElementById("togglePassword");
+    const toggleButtonText = document.getElementById("toggleButtonText");
+    
+    toggleButton.addEventListener("click", function() {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleButtonText.textContent = "Sembunyikan";
+        } else {
+            passwordInput.type = "password";
+            toggleButtonText.textContent = "Tampilkan";
+        }
+    });
+</script>

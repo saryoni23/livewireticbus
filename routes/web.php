@@ -54,5 +54,5 @@ Route::prefix('admin')->middleware(['auth:sanctum','verified'])->name('admin.')-
     Route::get('rute', RuteIndex::class)->name('rute.index');
     Route::get('tiket', TiketIndex::class)->name('tiket.index');
     Route::get('transaksi', TransaksiIndex::class)->name('transaksi.index');
-    Route::get('service', ServiceIndex::class)->name('service.index');
+    // Route::get('service', ServiceIndex::class)->name('service.index');
 });

@@ -61,7 +61,7 @@ class Controller extends BaseController
 
     {
         $logo = ProfilPererusahaan::limit(1)->get();
-        $tiket = Tiket::limit(6)->get();
+        $tiket = Tiket::limit(3)->get();
 
         return view('halaman_depan.page.tiket', [
             'title' => 'Tiket',

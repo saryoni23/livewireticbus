@@ -3,6 +3,7 @@
 namespace App\Livewire\Transaksi;
 
 use App\Livewire\Transaksi\TransaksiTabel;
+use App\Models\Tiket;
 use App\Models\Transaksi;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
@@ -27,13 +28,28 @@ class  TransaksiDelete extends Component
 
     public function del(){
 
-        $del = Transaksi::destroy($this->id);
+        $transaksi = Transaksi::find($this->id);
+        if (!$transaksi) {
+            $this->dispatch('notify', title: 'failed', message: 'Data tidak ditemukan');
+            return;
+        }
 
-        ($del)
-        ? $this->dispatch('notify', title:'success', message:'Data Berhasil Dihapus')
-        :$this->dispatch('notify', title:'failed', message:'Data Gagal Dihapus');
+        $delete = $transaksi->delete();
 
-        $this->modalTransaksiDelete=false;
+        if ($delete) {
+            // Tambahkan jumlah tiket
+            $tiket = Tiket::find($transaksi->tiket_id);
+            if ($tiket) {
+                $tiket->jumlah_tiket += $transaksi->jumlah_kursi;
+                $tiket->save();
+            }
+            
+            $this->dispatch('notify', title: 'success', message: 'Data Berhasil Dihapus');
+        } else {
+            $this->dispatch('notify', title: 'failed', message: 'Data Gagal Dihapus');
+        }
+
+        $this->modalTransaksiDelete = false;
 
         $this->dispatch('dispatch-transaksi-delete-del')->to(TransaksiTabel::class);
     }

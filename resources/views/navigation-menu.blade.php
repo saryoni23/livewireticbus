@@ -32,11 +32,6 @@
                     <x-nav-link href="{{ route('admin.transaksi.index') }}" wire:navigate :active="request()->routeIs('admin.transaksi.index')">
                         {{ __('Transaksi ') }}
                     </x-nav-link>
-                    <!-- <x-nav-link href="{{ route('admin.service.index') }}" wire:navigate :active="request()->routeIs('admin.service.index')">
-                        {{ __('Service ') }}
-                    </x-nav-link> -->
-                    
-
                 </div>
 
             </div>
@@ -185,9 +180,7 @@
             <x-responsive-nav-link href="{{ route('admin.transaksi.index') }}" wire:navigate :active="request()->routeIs('admin.transaksi.index')">
                 {{ __('Transaksi') }}
             </x-responsive-nav-link>
-            <!-- <x-responsive-nav-link href="{{ route('admin.service.index') }}" wire:navigate :active="request()->routeIs('admin.service.index')">
-                {{ __('Service') }}
-            </x-responsive-nav-link> -->
+
             
         </div>
 

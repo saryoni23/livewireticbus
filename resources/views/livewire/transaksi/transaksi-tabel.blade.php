@@ -21,9 +21,7 @@
             <th @click="$wire.sortField('s.nama_tiket')"
                 class='p-2 whitespace-nowrap border border-spacing-1 cursor-pointer'>
                 <x-sort :$sortDirection :$sortBy :field="'s.nama_tiket'" />Tiket</th>
-            <th @click="$wire.sortField('kategori.name')"
-                class='p-2 whitespace-nowrap border border-spacing-1 cursor-pointer'>
-                <!-- <x-sort :$sortDirection :$sortBy :field="'ji'" />Tipe Bus Kursi</th> -->
+            
             <th @click="$wire.sortField('jumlah_kursi')"
                 class='p-2 whitespace-nowrap border border-spacing-1 cursor-pointer'>
                 <x-sort :$sortDirection :$sortBy :field="'jumlah_kursi'" />Jumlah Kursi</th>
@@ -35,13 +33,7 @@
                 <x-sort :$sortDirection :$sortBy :field="'total_bayar'" />Total Bayar</th>
 
         </tr>
-        <!-- <tr>
-            <td></td>
-            <td></td>
-            <td class="p-2 border border-spacing-1"><x-input wire:model.live="form.u.name"      type="search" class="w-full text-sm"/></td>
-            <td class="p-2 border border-spacing-1"><x-input wire:model.live="form.r.kota_asal"   type="search" class="w-full text-sm"/></td>
-            <td class="p-2 border border-spacing-1"><x-input wire:model.live="form.s.nama_tiket"     type="search" class="w-full text-sm"/></td>
-        </tr> -->
+
     </thead>
     <tbody>
         @isset($transaksi)

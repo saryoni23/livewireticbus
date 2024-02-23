@@ -65,6 +65,12 @@ class TransaksiForm extends Form
 
     // Pastikan total bayar memiliki nilai yang valid
     if ($this->total_bayar !== null) {
+        // Kurangi jumlah tiket yang tersedia
+        $tiket = Tiket::find($this->tiket);
+        $tiket->jumlah_tiket -= $this->jumlah_kursi;
+        $tiket->save();
+
+        // Simpan transaksi
         Transaksi::create([
             'user_id' => $this->user,
             'tiket_id' => $this->tiket,
@@ -77,6 +83,7 @@ class TransaksiForm extends Form
         $this->reset();
     }
 }
+
 
 
     public function update()

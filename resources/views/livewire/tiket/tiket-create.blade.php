@@ -64,7 +64,7 @@
                 <!-- Jumlah Tiket -->
                 <div class="col-span-12">
                     <x-label for="form.jumlah_tiket" value="Jumlah Tiket" />
-                    <x-input wire:model="form.jumlah_tiket" id="form.jumlah_tiket" type="text" class="mt-1 w-full"
+                    <x-input wire:model="form.jumlah_tiket" id="form.jumlah_tiket" type="number" class="mt-1 w-full"
                         required autocomplete="form.jumlah_tiket" />
                     <x-input-error for="form.jumlah_tiket" class="mt-1" />
                 </div>

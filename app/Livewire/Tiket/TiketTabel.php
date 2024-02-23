@@ -15,7 +15,7 @@ class TiketTabel extends Component
     use WithSorting;
     public TiketForm $form;
     public    
-    $paginate   =10,
+    $paginate   =5,
     $sortBy     ='tbl_tiket.id',
     $sortDirection = 'desc';
     #[On('dispatch-tiket-create-save')]
