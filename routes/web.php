@@ -1,18 +1,17 @@
 <?php
 
 use App\Http\Controllers\Admins\AdminDashboardController;
+use App\Http\Controllers\Admins\RoleController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\UserController;
 use App\Livewire\Berita\BeritaIndex;
 use App\Livewire\Kategori\KategoriIndex;
 use App\Livewire\Rute\RuteIndex;
-use App\Livewire\Service\ServiceIndex;
 use App\Livewire\Tiket\TiketIndex;
 use App\Livewire\Transaksi\TransaksiIndex;
-use App\Models\Berita;
-use App\Models\Rute;
-use App\Models\Service;
-use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,23 +35,36 @@ Route::get('/blog/{id}',  [Controller::class, 'blogshow']);
 Route::get('/tiket',    [Controller::class, 'tiket'])->name('Tiket');
 Route::get('/company',  [Controller::class, 'company'])->name('Company');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+
+
+
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
+    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+    });
+
 
 Route::prefix('admin')->middleware(['auth:sanctum','verified'])->name('admin.')->group
 (function(){
-    Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-    Route::get('berita', BeritaIndex::class)->name('berita.index');
-    Route::get('kategori', KategoriIndex::class)->name('kategori.index');
-    Route::get('rute', RuteIndex::class)->name('rute.index');
-    Route::get('tiket', TiketIndex::class)->name('tiket.index');
-    Route::get('transaksi', TransaksiIndex::class)->name('transaksi.index');
-    // Route::get('service', ServiceIndex::class)->name('service.index');
+    Route::prefix('roles')->name('roles.')->group(function(){
+            Route::get('dashboard', [AdminDashboardController::class,   'index'])->name('dashboard')->middleware('userAkses:admin');
+            Route::get('/',         [RoleController::class,             'index'])->name('index')    ->middleware('userAkses:admin');
+            Route::get('berita',    BeritaIndex::class                          )->name('berita')   ->middleware('userAkses:admin');
+            Route::get('kategori',  KategoriIndex::class                        )->name('kategori') ->middleware('userAkses:admin');
+            Route::get('rute',      RuteIndex::class                            )->name('rute')     ->middleware('userAkses:admin');
+            Route::get('tiket',     TiketIndex::class                           )->name('tiket')    ->middleware('userAkses:admin');
+            Route::get('transaksi', TransaksiIndex::class                       )->name('transaksi')->middleware('userAkses:admin');
+    });
+});
+
+Route::prefix('karyawan')->middleware(['auth:sanctum','verified'])->name('karyawan.')->group
+(function(){
+    Route::prefix('roles')->name('roles.')->group(function(){
+            Route::get('dashboard', [AdminDashboardController::class,   'index'])->name('dashboard')->middleware('userAkses:karyawan');
+            Route::get('/',         [RoleController::class,             'index'])->name('index')    ->middleware('userAkses:karyawan');
+            Route::get('berita',    BeritaIndex::class                          )->name('berita')   ->middleware('userAkses:karyawan');
+            Route::get('kategori',  KategoriIndex::class                        )->name('kategori') ->middleware('userAkses:karyawan');
+            Route::get('rute',      RuteIndex::class                            )->name('rute')     ->middleware('userAkses:karyawan');
+            Route::get('tiket',     TiketIndex::class                           )->name('tiket')    ->middleware('userAkses:karyawan');
+            Route::get('transaksi', TransaksiIndex::class                       )->name('transaksi')->middleware('userAkses:karyawan');
+    });
 });

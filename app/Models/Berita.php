@@ -13,5 +13,7 @@ class Berita extends Model
         'judul',
         'isi',
         'image',
+        'is_active',
+        'user_id'
     ];
 }

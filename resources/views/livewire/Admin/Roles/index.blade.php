@@ -1,12 +1,12 @@
-<x-app-layout>
+<x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Roles') }}
         </h2>
     </x-slot>
 
     <x-slot name="slot">
-    <div class="-space-x-1 flex flex-wrap space-y-6 py-6 sm:justify-around sm:space-y-0">
+
 
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -20,7 +20,15 @@
                     nisi quidem optio at adipisci quia deserunt modi, deleniti sunt quibusdam accusantium? Neque?</p>
             </div>
         </div>
-    </div>
+
     </x-slot>
 
-</x-app-layout>
+    <script>
+        export default {
+            props: ['roles'],
+
+        }
+
+    </script>
+
+</x-admin-layout>

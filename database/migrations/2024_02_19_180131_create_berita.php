@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('judul');
             $table->text('isi');
             $table->text('image');
+            $table->boolean('is_active')->default('1');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -27,7 +27,7 @@ class BeritaTabel extends Component
             'data' => Berita::where('id', 'like','%'.$this->form->id.'%')
             ->where('judul', 'like','%'.$this->form->judul.'%')
             ->where('isi', 'like','%'.$this->form->isi.'%')
-            ->where('image', 'like','%'.$this->form->isi.'%')
+            ->where('image', 'like','%'.$this->form->image.'%')
             ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate($this->paginate),
 

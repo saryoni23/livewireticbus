@@ -37,6 +37,8 @@ class TiketTabel extends Component
     ->join('tbl_kategori as k', 'k.id', 'tbl_tiket.kategori_id')
     ->where('nama_tiket', 'like', '%' . $this->form->nama_tiket . '%') 
     ->where('nama_supir', 'like', '%' . $this->form->nama_supir . '%')
+    ->where('harga', 'like', '%' . $this->form->harga . '%')
+    ->where('jumlah_tiket', 'like', '%' . $this->form->jumlah_tiket . '%')
     ->orderBy($this->sortBy, $this->sortDirection)
     ->paginate($this->paginate);
 

@@ -23,6 +23,15 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             </div>
 
+            <div class="mt-4">
+                <x-label for="tgllahir" value="{{ __('Tanggal Lahir') }}" />
+                <x-input id="tgllahir" class="block mt-1 w-full" type="date" name="tgllahir" :value="old('tgllahir')" required autocomplete="date" />
+            </div>
+            <div class="mt-4">
+                <x-label for="no_hp" value="{{ __('No HP') }}" />
+                <x-input id="no_hp" class="block mt-1 w-full form-input [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" type="number" name="no_hp" :value="old('no_hp')" required autocomplete="date" />
+            </div>
+
             <div class="relative mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-inputpassword type="password" name="password" id="password" placeholder="••••••••"

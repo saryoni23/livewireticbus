@@ -15,7 +15,7 @@ class RuteTabel extends Component
     use WithSorting;
     public RuteForm $form;
     public    
-    $paginate   =10,
+    $paginate   =5,
     $sortBy     ='tbl_rute.id',
     $sortDirection = 'desc';
     #[On('dispatch-rute-create-save')]

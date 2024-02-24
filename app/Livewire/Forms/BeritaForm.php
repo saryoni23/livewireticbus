@@ -3,11 +3,16 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Berita;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
+use Livewire\WithFileUploads;
 
 class BeritaForm extends Form
 {
+    use WithFileUploads;
+
+
     public ?Berita $berita;
 
     public $id;
@@ -18,8 +23,10 @@ class BeritaForm extends Form
     #[Rule('required|min:3', as: 'Isi harus diisi /')]
     public $isi;
     
-    #[Rule('required|min:3', as: 'Gambar harus diisi/')]
+    #[Rule('image', message: 'File Harus Gambar')]
+    #[Rule('max:1024', message: 'Ukuran File Maksimal 1MB')]
     public $image;
+    public $hapusGambar = false;
     
     public function setBerita(Berita $berita){
         $this->berita   = $berita;
@@ -31,15 +38,32 @@ class BeritaForm extends Form
     
     public function store()
     {
-        // $this->validate();
-        Berita::create($this->except('berita'));
+        $this->validate();
+        Berita::create([
+            'judul' => $this->judul,
+            'isi' => $this->isi,
+            'image' => $this->image->storeAs('public/berita',$this->image->hashName()),
+        ]);
         $this->reset();
     }
     
-    public function update(){
+    public function update()
+    {
         $this->validate();
-        $this->berita->update($this->except('berita'));
-    }
     
+        // Hapus gambar lama jika ada gambar baru diunggah
+        if ($this->image) {
+            Storage::delete('public/berita/' . $this->berita->image);
+        }
+    
+        $this->berita->update([
+            'judul' => $this->judul,
+            'isi' => $this->isi,
+            // Hanya mengupdate gambar jika ada gambar baru diunggah
+            'image' => $this->image ? $this->image->storeAs('public/berita', $this->image->hashName()) : $this->berita->image,
+        ]);
+    
+        $this->reset();
+    }    
 
 }

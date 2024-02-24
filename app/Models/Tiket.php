@@ -31,8 +31,8 @@ class Tiket extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
-    public function transaksi():HasMany
+    public function transaksi(): HasMany
     {
-        return $this->hasMany(Tiket::class);
+        return $this->hasMany(Transaksi::class);
     }
 }

@@ -23,8 +23,9 @@
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')
 
-
-
+            
+            
+            
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
@@ -32,11 +33,14 @@
                         {{ $header }}
                     </div>
                 </header>
-            @endif
+                @endif
+                
+                <!-- Page Content -->
+                <main>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
+                    
+                    {{ $slot }}
+                
             </main>
         </div>
 

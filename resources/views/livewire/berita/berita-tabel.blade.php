@@ -41,7 +41,12 @@
             <td class='p-2 text-center border border-spacing-1'>{{ $berita->id }}</td>
             <td class='p-2 border border-spacing-1'>{{ $berita->judul }}</td>
             <td class='p-2 border border-spacing-1'>{{ $berita->isi }}</td>
-            <td class='p-2 border border-spacing-1'>{{ $berita->image }}</td>
+            
+            <td class='p-2 border border-spacing-1 text-center'>
+                
+                <img src="{{ asset($berita->image) }}" class="rounded" style="width: 150px">
+
+            </td>
         </tr>
         @endforeach
         @endisset

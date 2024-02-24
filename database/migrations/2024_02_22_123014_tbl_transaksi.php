@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_tiket');
+        Schema::dropIfExists('tbl_transaksi');
     }
 };

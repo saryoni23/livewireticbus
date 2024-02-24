@@ -13,7 +13,7 @@
                 <!-- Rute Tiket -->
                 <div class="col-span-12">
                     <x-label for="form.user" value="Pemesan" />
-                    <x-select wire:model="form.user" id="form.user" type="text" class="mt-1 w-full" required
+                    <x-select wire:model="form.user" id="form.user" type="text" class="mt-1 w-full" require
                         autocomplete="form.user">
                         <option></option>
                         @foreach($user as $usr)
@@ -26,7 +26,7 @@
                 <!-- Tiket -->
                 <div class="col-span-12">
                     <x-label for="form.tiket" value="Rute Tiket" />
-                    <x-select wire:model="form.tiket" id="form.tiket" type="text" class="mt-1 w-full" required
+                    <x-select wire:model="form.tiket" id="form.tiket" type="text" class="mt-1 w-full" require
                         autocomplete="form.tiket">
                         <option></option>
                         @foreach($tiket as $tk)
@@ -45,7 +45,7 @@
                 <div class="col-span-12">
                     <x-label for="form.jumlah_kursi" value="Jumlah Kursi" />
                     <x-input wire:model="form.jumlah_kursi" id="form.jumlah_kursi" type="number" min='1'
-                        class="mt-1 w-full" required autocomplete="form.jumlah_kursi" />
+                        class="mt-1 w-full" require autocomplete="form.jumlah_kursi" />
                     <x-input-error for="form.jumlah_kursi" class="mt-1" />
                 </div>
 
@@ -53,7 +53,7 @@
                 <div class="col-span-12">
                     <x-label for="form.nomor_kursi" value="Nomor Kursi" />
                     <x-input wire:model="form.nomor_kursi" id="form.nomor_kursi" type="text" class="mt-1 w-full"
-                        required autocomplete="form.nomor_kursi" />
+                        require autocomplete="form.nomor_kursi" />
                     <x-input-error for="form.nomor_kursi" class="mt-1" />
                 </div>
 

@@ -15,23 +15,26 @@
                     <x-nav-link href="{{ route('dashboard') }}" wire:navigate :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    
-                    <x-nav-link href="{{ route('admin.berita.index') }}" wire:navigate :active="request()->routeIs('admin.berita.index')">
+
+                    <x-nav-link href="{{ route('admin.roles.berita') }}" wire:navigate :active="request()->routeIs('admin.roles.berita')">
                         {{ __('Berita') }}
                     </x-nav-link>
-
-                    <x-nav-link href="{{ route('admin.kategori.index') }}" wire:navigate :active="request()->routeIs('admin.kategori.index')">
+            
+                    <x-nav-link href="{{ route('admin.roles.kategori') }}" wire:navigate :active="request()->routeIs('admin.roles.kategori')">
                         {{ __('Tipe Bus') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('admin.rute.index') }}" wire:navigate :active="request()->routeIs('admin.rute.index')">
+                    <x-nav-link href="{{ route('admin.roles.rute') }}" wire:navigate :active="request()->routeIs('admin.roles.rute')">
                         {{ __('Rute') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('admin.tiket.index') }}" wire:navigate :active="request()->routeIs('admin.tiket.index')">
-                        {{ __('Tiket ') }}
+                    <x-nav-link href="{{ route('admin.roles.tiket') }}" wire:navigate :active="request()->routeIs('admin.roles.tiket')">
+                        {{ __('Tiket') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('admin.transaksi.index') }}" wire:navigate :active="request()->routeIs('admin.transaksi.index')">
-                        {{ __('Transaksi ') }}
+                    <x-nav-link href="{{ route('admin.roles.transaksi') }}" wire:navigate :active="request()->routeIs('admin.roles.transaksi')">
+                        {{ __('Transaksi') }}
                     </x-nav-link>
+            
+
+                    
                 </div>
 
             </div>
@@ -164,24 +167,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link href="{{ route('admin.berita.index') }}" wire:navigate :active="request()->routeIs('admin.berita.index')">
-                {{ __('Berita') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link href="{{ route('admin.kategori.index') }}" wire:navigate :active="request()->routeIs('admin.kategori.index')">
-                {{ __('Tipe Bus') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('admin.rute.index') }}" wire:navigate :active="request()->routeIs('admin.rute.index')">
-                {{ __('Rute') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('admin.tiket.index') }}" wire:navigate :active="request()->routeIs('admin.tiket.index')">
-                {{ __('Tiket') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('admin.transaksi.index') }}" wire:navigate :active="request()->routeIs('admin.transaksi.index')">
-                {{ __('Transaksi') }}
-            </x-responsive-nav-link>
-
-            
+          
         </div>
 
         <!-- Responsive Settings Options -->

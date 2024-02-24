@@ -36,24 +36,28 @@
 
     </thead>
     <tbody>
-        @isset($transaksi)
+       
+
         @foreach ($transaksi as $item)
+
             <tr>
                 <td class="p-2 text-center border border-spacing-1">{{ $loop->iteration }}.</td>
-                <td class="p-2 border border-spacing-1"> 
-                    <x-button @click="$dispatch('dispatch-transaksi-table-edit', { id:  '{{ $item->transaksi_id }}'  })" type="button" class="text-sm">Edit</x-button>
+                <td class="text-center p-2 border border-spacing-1"> 
+                    <!-- <x-button @click="$dispatch('dispatch-transaksi-table-edit', { id:  '{{ $item->transaksi_id }}'  })" type="button" class="text-sm">Edit</x-button> -->
                     <x-danger-button @click="$dispatch('dispatch-transaksi-table-delete', { id:  '{{ $item->transaksi_id }}', nama:  '{{ $item->user->name }}' })">Delete</x-danger-button>
                 </td>
                 <td class="p-2 text-center border border-spacing-1">{{ $item->user->name }}</td>
+                
                 <td class="p-2 border border-spacing-1 text-center"><span class='font-bold text-lg'>Dari: </span>{{ $item->tiket->rute->kota_asal }} <br><span class='font-bold text-lg'>Ke:</span> {{ $item->tiket->rute->kota_tujuan }}</td>
-                <td class="p-2 border border-spacing-1 text-center">{{ $item->tiket->nama_tiket }}</td>
-                <td class="p-2 border border-spacing-1 text-center">{{ $item->tiket->kategori->name }}</td>
+
+              <td class="p-2 border border-spacing-1 text-center">{{ $item->tiket->nama_tiket }}</td>
+
                 <td class="p-2 border border-spacing-1 text-center">{{ $item->jumlah_kursi}}</td>
                 <td class="p-2 border border-spacing-1 text-center">{{ $item->nomor_kursi }}</td>
                 <td class="p-2 border border-spacing-1 text-center">{{ $item->total_bayar }}</td>
             </tr>
         @endforeach
-    @endisset
+
     </tbody>
 </table>
 <div class="mt-3">{{ $transaksi->links() }}</div>

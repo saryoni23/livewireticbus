@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Livewire\Livewire;
 
 class AdminDashboardController extends Controller
@@ -13,7 +14,7 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
-        return view('Admin.Dashboard');
+        return view('livewire.Admin.Dashboard');
         }
 
     /**
@@ -35,7 +36,7 @@ class AdminDashboardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id):View
     {
         //
     }

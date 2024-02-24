@@ -2,6 +2,7 @@
 namespace App\Livewire\Transaksi;
 
 use App\Livewire\Forms\TransaksiForm;
+use App\Models\Rute;
 use App\Models\Tiket;
 use App\Models\Transaksi;
 use App\Models\User;
@@ -70,6 +71,7 @@ class TransaksiEdit extends Component
         return view('livewire.transaksi.transaksi-edit', [
             'user' => User::all(),
             'tiket' => Tiket::all(),
+            'rute' => Rute::all(),
         ]);
     }
 }

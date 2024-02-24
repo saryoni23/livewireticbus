@@ -43,6 +43,8 @@ class  TransaksiDelete extends Component
                 $tiket->jumlah_tiket += $transaksi->jumlah_kursi;
                 $tiket->save();
             }
+
+            $this->dispatch('dispatch-transaksi-delete-del')->to(TransaksiTabel::class);
             
             $this->dispatch('notify', title: 'success', message: 'Data Berhasil Dihapus');
         } else {
@@ -51,7 +53,6 @@ class  TransaksiDelete extends Component
 
         $this->modalTransaksiDelete = false;
 
-        $this->dispatch('dispatch-transaksi-delete-del')->to(TransaksiTabel::class);
     }
 
     public function render()

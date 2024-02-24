@@ -6,29 +6,25 @@
 
         <x-slot name="content">
             <div class="grid grid-col-12 gap-4">
-
                 <!-- Judul -->
                 <div class="col-span-12">
-                    <x-label for="form.judul" value="Judul" />
-                    <x-input wire:model="form.judul" id="form.judul" type="text" class="mt-1 w-full" require
-                        autocomplete="form.judul" />
+                    <x-label for="judul" value="Judul" />
+                    <x-input wire:model="form.judul" id="judul" type="text" class="mt-1 w-full" required autocomplete="judul" />
                     <x-input-error for="form.judul" class="mt-1" />
                 </div>
 
                 <!-- Isi -->
                 <div class="col-span-12">
-                    <x-label for="form.isi" value="Isi" />
-                    <textarea wire:model="form.isi" id="form.isi" class="mt-1 block w-full" name="form.isi" required
-                        autocomplete="form.isi" rows="5"></textarea>
+                    <x-label for="isi" value="Isi" />
+                    <textarea wire:model="form.isi" id="isi" class="mt-1 block w-full" required autocomplete="isi" rows="5"></textarea>
                     <x-input-error for="form.isi" class="mt-1" />
                 </div>
 
-                <!-- Gambar -->
                 <div class="col-span-12">
-                    <x-label for="form.image" value="Image" />
-                    <x-input wire:model="form.image" id="form.image" type="text" class="mt-1 w-full" require
-                        autocomplete="form.image" />
-                    <x-input-error for="form.image" class="mt-1" />
+                    <x-label for="image" value="Gambar" />
+                    <input type="file" wire:model="form.image" id="image">
+                
+                    @error('form.image') <span class="error">{{ $message }}</span> @enderror
                 </div>
 
             </div>

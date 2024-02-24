@@ -27,8 +27,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
-        'is_admin',
         'password',
+        'no_hp',
+        'role',
+        'tgllahir',
     ];
 
     /**
@@ -62,9 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function Roles(){
-        return $this->belongsToMany(Role::class);
-    }
+
 
     public function tiket():HasMany
     {

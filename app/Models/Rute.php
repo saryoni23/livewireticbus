@@ -21,4 +21,8 @@ class Rute extends Model
     {
         return $this->hasMany(Tiket::class);
     }
+    public function transaksi():HasMany
+    {
+        return $this->hasMany(Transaksi::class);
+    }
 }

@@ -7,9 +7,13 @@ use App\Livewire\Berita\BeritaTabel;
 use App\Models\Berita;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+
 
 class BeritaEdit extends Component
 {
+    use WithFileUploads;
+
     public BeritaForm $form;
 
     public $modalBeritaEdit = false;

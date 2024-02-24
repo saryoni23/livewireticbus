@@ -6,6 +6,7 @@ use App\Livewire\Forms\TransaksiForm;
 use App\Models\Kategori;
 use App\Models\Rute;
 use App\Models\Tiket;
+use App\Models\Transaksi;
 use App\Models\User;
 use Livewire\Component;
 
@@ -40,10 +41,9 @@ class TransaksiCreate extends Component
         }
     }
 
-    public function save()
-{
+    public function save(){
     $this->validate();
-    
+
     // Periksa apakah tiket yang dipilih valid
     $tiket = Tiket::find($this->form->tiket);
     if (!$tiket) {
@@ -74,6 +74,7 @@ class TransaksiCreate extends Component
         } else {
             // Kirim notifikasi jika jumlah kursi melebihi jumlah tiket yang tersedia
             $this->dispatch('notify', title: 'failed', message: 'Jumlah kursi melebihi jumlah tiket yang tersedia.');
+            $this->dispatch('dispatch-transaksi-create-save')->to(TransaksiTabel::class);
         }
     } else {
         // Kirim notifikasi jika tiket telah habis
