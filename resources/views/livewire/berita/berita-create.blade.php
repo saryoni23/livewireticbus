@@ -1,3 +1,7 @@
+@php
+use Illuminate\Support\Facades\Auth;
+@endphp
+
 <div>
     <x-button @click="$wire.modalBeritaCreate = true">Create Berita</x-button>
 
@@ -15,23 +19,28 @@
                     <x-input wire:model="form.judul" id="judul" type="text" class="mt-1 w-full" required autocomplete="judul" />
                     <x-input-error for="form.judul" class="mt-1" />
                 </div>
-
+                
                 <!-- Isi -->
                 <div class="col-span-12">
                     <x-label for="isi" value="Isi" />
                     <textarea wire:model="form.isi" id="isi" class="mt-1 block w-full" required autocomplete="isi" rows="5"></textarea>
                     <x-input-error for="form.isi" class="mt-1" />
                 </div>
-
+                
                 <div class="col-span-12">
                     <x-label for="image" value="Gambar" />
                     <input type="file" wire:model="form.image" id="image">
-                
+                    
                     @error('form.image') <span class="error">{{ $message }}</span> @enderror
                 </div>
+                
+                <x-input wire:model="form.user_id" id="user_id" type="text" class="mt-1 w-full" autocomplete="user_id"  :value=""
+                value="{{ old('judul', Auth::id()) }}" hidden/>
+
 
             </div>
         </x-slot>
+
 
         <x-slot name="footer">
             <x-secondary-button @click="$wire.modalBeritaCreate = false" wire:loading.attr="disabled">

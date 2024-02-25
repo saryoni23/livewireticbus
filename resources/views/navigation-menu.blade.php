@@ -16,22 +16,23 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('admin.roles.berita') }}" wire:navigate :active="request()->routeIs('admin.roles.berita')">
+                    <x-nav-link href="{{ route('admin.berita') }}" wire:navigate :active="request()->routeIs('admin.berita')">
                         {{ __('Berita') }}
                     </x-nav-link>
             
-                    <x-nav-link href="{{ route('admin.roles.kategori') }}" wire:navigate :active="request()->routeIs('admin.roles.kategori')">
+                    <x-nav-link href="{{ route('admin.kategori') }}" wire:navigate :active="request()->routeIs('admin.kategori')">
                         {{ __('Tipe Bus') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('admin.roles.rute') }}" wire:navigate :active="request()->routeIs('admin.roles.rute')">
+                    <x-nav-link href="{{ route('admin.rute') }}" wire:navigate :active="request()->routeIs('admin.rute')">
                         {{ __('Rute') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('admin.roles.tiket') }}" wire:navigate :active="request()->routeIs('admin.roles.tiket')">
+                    <x-nav-link href="{{ route('admin.tiket') }}" wire:navigate :active="request()->routeIs('admin.tiket')">
                         {{ __('Tiket') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('admin.roles.transaksi') }}" wire:navigate :active="request()->routeIs('admin.roles.transaksi')">
+                    <x-nav-link href="{{ route('admin.transaksi') }}" wire:navigate :active="request()->routeIs('admin.transaksi')">
                         {{ __('Transaksi') }}
                     </x-nav-link>
+
             
 
                     

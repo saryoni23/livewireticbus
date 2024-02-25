@@ -16,4 +16,9 @@ class Berita extends Model
         'is_active',
         'user_id'
     ];
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -23,11 +23,10 @@
                 </p>
                 <div  class="flex justify-between items-center">
                     <div class="flex items-center space-x-4">
-                        <img class="w-7 h-7 rounded-full"
-                            src="{{ asset('storage/posts/'.$item->image) }}"
-                            alt="Jese Leos avatar" />
+                        
+                        <img class="h-10 w-10 rounded-full object-cover" src="{{ $item->user->profile_photo_url }}}" alt="{{ $item->user->name }}" />
                         <span class="font-medium dark:text-white">
-
+                            {{ $item->User->name }}
                         </span>
                     </div>
                     <a href="\blog\{{ $item->id }}"

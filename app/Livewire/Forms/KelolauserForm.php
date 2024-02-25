@@ -2,20 +2,19 @@
 
 namespace App\Livewire\Forms;
 
-use App\Models\Berita;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Auth;
 
-
-class BeritaForm extends Form
+class KelolauserForm extends Form
 {
     use WithFileUploads;
 
 
-    public ?Berita $berita;
+    public ?User $kelolauser;
 
     public $id;
 
@@ -33,13 +32,13 @@ class BeritaForm extends Form
     public $user_id;
     
     
-    public function setBerita(Berita $berita){
-        $this->berita   = $berita;
-        $this->judul    = $berita->judul;
-        $this->isi      = $berita->isi;
-        $this->image    = $berita->image;
-        $this->is_active= $berita->is_active;
-        $this->user_id  = $berita->user_id;
+    public function setKelolauser(User $kelolauser){
+        $this->kelolauser   = $kelolauser;
+        $this->judul    = $kelolauser->judul;
+        $this->isi      = $kelolauser->isi;
+        $this->image    = $kelolauser->image;
+        $this->is_active= $kelolauser->is_active;
+        $this->user_id  = $kelolauser->user_id;
 
     }
     
@@ -48,11 +47,11 @@ class BeritaForm extends Form
     $this->validate();
 
 
-    // Menyimpan gambar ke direktori 'public/berita'
-    $this->image->storeAs('public/berita', $this->image->hashName());
+    // Menyimpan gambar ke direktori 'public/kelolauser'
+    $this->image->storeAs('public/kelolauser', $this->image->hashName());
 
     // Membuat entri baru di database
-    Berita::create([
+    User::create([
         'judul' => $this->judul,
         'isi' => $this->isi,
         'user_id' => $this->user_id,
@@ -69,14 +68,14 @@ class BeritaForm extends Form
 
         // Hapus gambar lama jika ada gambar baru diunggah
         if ($this->image) {
-            Storage::delete($this->berita->image);
+            Storage::delete($this->kelolauser->image);
         }
 
-        $this->berita->update([
+        $this->kelolauser->update([
             'judul' => $this->judul,
             'isi' => $this->isi,
             // Hanya mengupdate gambar jika ada gambar baru diunggah
-            'image' => $this->image ? $this->image->storeAs('storage/berita', $this->image->hashName()) : $this->berita->image,
+            'image' => $this->image ? $this->image->storeAs('storage/kelolauser', $this->image->hashName()) : $this->kelolauser->image,
         ]);
 
         $this->reset();

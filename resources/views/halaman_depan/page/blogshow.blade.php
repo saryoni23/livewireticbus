@@ -13,7 +13,7 @@
                             class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                             {{ $post->judul }}
                         </h1>
-                        <img src="{{ asset('storage/posts/'.$post->image) }}" class="w-100 rounded" />
+                        <img src="{{ asset($post->image) }}" class="w-100 rounded" />
                         <p class="mb-8  font-normal text-gray-500  dark:text-gray-400">
                             {!! $post->isi !!}</p>
 
