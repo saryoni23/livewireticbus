@@ -28,21 +28,19 @@ class TransaksiTabel extends Component
     #[On('dispatch-rute-delete-del')]
     public function render()
     {
-      
         $transaksi = Transaksi::select(
             'tbl_transaksi.id as transaksi_id', 
             'tbl_transaksi.jumlah_kursi', 
-            'tbl_transaksi.nomor_kursi',
             'tbl_transaksi.total_bayar',
             'tbl_tiket.id as tiket_id',
-            'u.id as user_id', 
+            'u.id as user_id',
+            // 'r.id as rute_id' 
             
         )
         ->join('tbl_tiket', 'tbl_tiket.id', 'tbl_transaksi.tiket_id')
-
         ->join('users as u', 'u.id', 'tbl_transaksi.user_id')
+        // ->join('tbl_rute','tbl_rute.id','tbl_transaksi.rute.id')
         ->where('user_id', 'like', '%' . $this->form->user . '%')
-        ->where('nomor_kursi', 'like','%'.$this->form->nomor_kursi.'%')
         ->where('jumlah_kursi', 'like','%'.$this->form->jumlah_kursi.'%')
         ->where('total_bayar', 'like','%'.$this->form->total_bayar.'%')
         ->orderBy($this->sortBy, $this->sortDirection)
@@ -54,4 +52,4 @@ class TransaksiTabel extends Component
             'kota_asal' => Rute::all(),
         ]);
     }
-    }  
+}  

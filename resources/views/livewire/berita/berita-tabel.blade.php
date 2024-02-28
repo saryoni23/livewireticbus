@@ -44,7 +44,7 @@
             
             <td class='p-2 border border-spacing-1 text-center'>
                 
-                <img src="{{ asset($berita->image) }}" class="rounded" style="width: 150px">
+                <img src="{{ asset('/storage/berita/'.$berita->image) }}" class="rounded" style="width: 150px">
 
             </td>
         </tr>

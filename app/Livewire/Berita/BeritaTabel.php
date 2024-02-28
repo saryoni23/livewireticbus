@@ -15,7 +15,7 @@ class BeritaTabel extends Component
     use WithSorting;
     public BeritaForm $form;
     public    
-    $paginate   =10,
+    $paginate   =5,
     $sortBy     ='berita.id',
     $sortDirection = 'desc';
     #[On('dispatch-berita-create-save')]

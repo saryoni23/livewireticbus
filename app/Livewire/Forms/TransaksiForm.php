@@ -19,7 +19,7 @@ class TransaksiForm extends Form
     public $tiket;
     #[Rule('required', as: 'Jumlah Kursi')]
     public $jumlah_kursi;
-    #[Rule('required', as: 'Nomor Kursi')]
+    // #[Rule('required', as: 'Nomor Kursi')]
     public $nomor_kursi;
     public $total_bayar;
 

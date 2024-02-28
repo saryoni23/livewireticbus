@@ -16,18 +16,16 @@
                 class='p-2 whitespace-nowrap border border-spacing-1 cursor-pointer'>
                 <x-sort :$sortDirection :$sortBy :field="'u.name'" />Nama User</th>
             <th @click="$wire.sortField('r.kota_asal')"
-                class='p-2 whitespace-nowrap border border-spacing-1 cursor-pointer'>
-                <x-sort :$sortDirection :$sortBy :field="'r.kota_asal'" />Rute</th>
-            <th @click="$wire.sortField('s.nama_tiket')"
-                class='p-2 whitespace-nowrap border border-spacing-1 cursor-pointer'>
-                <x-sort :$sortDirection :$sortBy :field="'s.nama_tiket'" />Tiket</th>
-            
+            <th @click="sortBy('r.kota_asal')" class="p-2 whitespace-nowrap border border-spacing-1 cursor-pointer">
+                <x-sort :$sortDirection :$sortBy :field="'tkota_asal'" />Rute
+            </th>
+            <th @click="sortBy('tbl_tiket.nama_tiket')" class="p-2 whitespace-nowrap border border-spacing-1 cursor-pointer">
+                <x-sort :$sortDirection :$sortBy :field="'tbl_tiket.nama_tiket'" />Tiket
+            </th>
             <th @click="$wire.sortField('jumlah_kursi')"
                 class='p-2 whitespace-nowrap border border-spacing-1 cursor-pointer'>
                 <x-sort :$sortDirection :$sortBy :field="'jumlah_kursi'" />Jumlah Kursi</th>
-            <th @click="$wire.sortField('nomor_kursi')"
-                class='p-2 whitespace-nowrap border border-spacing-1 cursor-pointer'>
-                <x-sort :$sortDirection :$sortBy :field="'nomor_kursi'" />Nomor Kursi</th>
+
             <th @click="$wire.sortField('total_bayar')"
                 class='p-2 whitespace-nowrap border border-spacing-1 cursor-pointer'>
                 <x-sort :$sortDirection :$sortBy :field="'total_bayar'" />Total Bayar</th>
@@ -53,7 +51,7 @@
               <td class="p-2 border border-spacing-1 text-center">{{ $item->tiket->nama_tiket }}</td>
 
                 <td class="p-2 border border-spacing-1 text-center">{{ $item->jumlah_kursi}}</td>
-                <td class="p-2 border border-spacing-1 text-center">{{ $item->nomor_kursi }}</td>
+                <!-- <td class="p-2 border border-spacing-1 text-center">{{ $item->nomor_kursi }}</td> -->
                 <td class="p-2 border border-spacing-1 text-center">{{ $item->total_bayar }}</td>
             </tr>
         @endforeach

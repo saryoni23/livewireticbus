@@ -49,19 +49,15 @@
                     <x-input-error for="form.jumlah_kursi" class="mt-1" />
                 </div>
 
-                <!-- Nomor Kursi-->
-                <div class="col-span-12">
-                    <x-label for="form.nomor_kursi" value="Nomor Kursi" />
-                    <x-input wire:model="form.nomor_kursi" id="form.nomor_kursi" type="text" class="mt-1 w-full"
-                        require autocomplete="form.nomor_kursi" />
-                    <x-input-error for="form.nomor_kursi" class="mt-1" />
-                </div>
+                 <!-- Nomor Kursi-->
+                
+
+
 
                 <!-- Total Bayar -->
                 <div class="col-span-12">
                     <x-label for="form.total_bayar" value="Total Bayar" />
-                    <x-input id="form.total_bayar" type="text" class="mt-1 w-full" disabled
-                        autocomplete="form.total_bayar" />
+                    <x-input id="form.total_bayar" type="text" class="mt-1 w-full" disabled autocomplete="form.total_bayar" />
                 </div>
             </div>
         </x-slot>
@@ -119,16 +115,32 @@
 
 
 
-    // Menambahkan event listener untuk menghitung total bayar setiap kali jumlah kursi berubah
-    inputJumlahKursi.addEventListener('change', function () {
-        // Mendapatkan harga tiket dari opsi yang dipilih
-        var hargaTiket = selectTiket.options[selectTiket.selectedIndex].getAttribute('data-harga');
+    document.addEventListener('DOMContentLoaded', function () {
+        // Mendapatkan elemen input total bayar
+        var inputTotalBayar = document.getElementById('form.total_bayar');
+        // Mendapatkan elemen input jumlah kursi dan select tiket
+        var inputJumlahKursi = document.getElementById('form.jumlah_kursi');
+        var selectTiket = document.getElementById('form.tiket');
 
-        // Menghitung total bayar
-        var totalBayar = inputJumlahKursi.value * hargaTiket;
-
-        // Menampilkan total bayar di input total bayar
-        inputTotalBayar.value = totalBayar;
+        // Menambahkan event listener untuk menghitung total bayar setiap kali jumlah kursi berubah
+        inputJumlahKursi.addEventListener('change', function () {
+            // Mendapatkan harga tiket dari opsi yang dipilih
+            var hargaTiket = selectTiket.options[selectTiket.selectedIndex].getAttribute('data-harga');
+            // Menghitung total bayar
+            var totalBayar = inputJumlahKursi.value * hargaTiket;
+            // Memformat total bayar menjadi format mata uang Rupiah (IDR)
+            var formattedTotalBayar = formatRupiah(totalBayar);
+            // Menampilkan total bayar di input total bayar
+            inputTotalBayar.value = formattedTotalBayar;
+        });
     });
+
+    // Fungsi untuk memformat angka menjadi format mata uang Rupiah
+    function formatRupiah(angka) {
+        var reverse = angka.toString().split('').reverse().join(''),
+            ribuan = reverse.match(/\d{1,3}/g);
+        ribuan = ribuan.join('.').split('').reverse().join('');
+        return 'Rp ' + ribuan;
+    }
 
 </script>

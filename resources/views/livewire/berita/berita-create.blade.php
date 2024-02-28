@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Auth;
                 </div>
                 
                 <x-input wire:model="form.user_id" id="user_id" type="text" class="mt-1 w-full" autocomplete="user_id"  :value=""
-                value="{{ old('judul', Auth::id()) }}" hidden/>
+                value="{{ old('user_id', Auth::id()) }}" hidden/>
 
 
             </div>
@@ -53,3 +53,4 @@ use Illuminate\Support\Facades\Auth;
         </x-slot>
     </x-dialog-modal>
 </div>
+

@@ -25,8 +25,8 @@ class BeritaForm extends Form
     #[Rule('required|min:3', as: 'Isi harus diisi /')]
     public $isi;
     
-    #[Rule('image', message: 'File Harus Gambar')]
-    #[Rule('max:1024', message: 'Ukuran File Maksimal 1MB')]
+    // #[Rule('image', message: 'File Harus Gambar')]
+    // #[Rule('max:1024', message: 'Ukuran File Maksimal 1MB')]
     public $image;
 
     public $is_active;
@@ -44,41 +44,60 @@ class BeritaForm extends Form
     }
     
     public function store()
-{
-    $this->validate();
-
-
-    // Menyimpan gambar ke direktori 'public/berita'
-    $this->image->storeAs('public/berita', $this->image->hashName());
-
-    // Membuat entri baru di database
-    Berita::create([
-        'judul' => $this->judul,
-        'isi' => $this->isi,
-        'user_id' => $this->user_id,
-        'is_active' => 1,
-        'image' => $$this->image->hashName(), // Menyimpan nama file saja, bukan path lengkap
-    ]);
-
-    $this->reset();
-}
+    {
+        $this->validate();
+    
+        // Simpan gambar ke direktori storage
+        $storedPath = $this->image->store('public/berita');
+    
+        // Ambil nama file yang diunggah
+        $fileName = basename($storedPath);
+    
+        // Buat objek Berita dengan nama file yang diunggah
+        Berita::create([
+            'judul' => $this->judul,
+            'isi' => $this->isi,
+            'user_id' => $this->user_id,
+            'is_active' => 1,
+            'image' => $fileName,
+        ]);
+    
+        // Reset formulir setelah penyimpanan berhasil
+        $this->reset();
+    }
 
     public function update()
     {
-        $this->validate();
+    $this->validate([
+        'judul' => ['required', 'min:3'],
+        'isi' => ['required', 'min:3'],
+        'image' => ['nullable', 'image', 'max:1024'], // Buat gambar opsional dengan menambahkan 'nullable'
+    ]);
 
-        // Hapus gambar lama jika ada gambar baru diunggah
-        if ($this->image) {
+    // Hanya mengupdate gambar jika ada gambar baru diunggah
+    if ($this->image) {
+        // Simpan gambar baru
+        $this->image->storeAs('public/berita', $this->image->hashName());
+
+        // Hapus gambar lama jika ada
+        if ($this->berita->image) {
             Storage::delete($this->berita->image);
         }
 
+        // Update entri di database dengan nama gambar yang baru
         $this->berita->update([
-            'judul' => $this->judul,
-            'isi' => $this->isi,
-            // Hanya mengupdate gambar jika ada gambar baru diunggah
-            'image' => $this->image ? $this->image->storeAs('storage/berita', $this->image->hashName()) : $this->berita->image,
+            'image' => $this->image->hashName(),
         ]);
+    }
 
-        $this->reset();
-    }    
+    // Update judul dan isi jika tidak ada gambar baru diunggah atau jika ada perubahan
+    $this->berita->update([
+        'judul' => $this->judul,
+        'isi' => $this->isi,
+    ]);
+
+    $this->reset();
+    }
+
+    
 }
