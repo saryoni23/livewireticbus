@@ -24,7 +24,7 @@
                 <div  class="flex justify-between items-center">
                     <div class="flex items-center space-x-4">
                         
-                        <img class="h-10 w-10 rounded-full object-cover" src="{{ $item->user->profile_photo_url }}}" alt="{{ $item->user->name }}" />
+                        <img class="h-10 w-10 rounded-full object-cover" src="{{ $item->user->profile_photo_url }}" alt="{{ $item->user->name }}" />
                         <span class="font-medium dark:text-white">
                             {{ $item->User->name }}
                         </span>

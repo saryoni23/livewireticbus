@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('tiket_id');
             $table->integer('jumlah_kursi');
-            $table->string('nomor_kursi');
+            $table->string('nomor_kursi')->nullable();
             $table->string('total_bayar');
             $table->timestamps();
 

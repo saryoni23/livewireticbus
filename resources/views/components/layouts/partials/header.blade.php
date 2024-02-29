@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<header x-data="{openSidebar:false}" class="absolute inset-x-0 top-0 z-10 mx-auto max-w-screen-xl">
+<header x-data="{openSidebar:false}" class="absolute inset-x-0 top-0 z-50 mx-auto max-w-screen-xl">
     <nav class="flex flex-row items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
 
@@ -7,7 +7,7 @@
             <a href="/" class="flex items-center">
                 <img class="h-8 mr-3" src="{{ asset('/storage/logo/'.$logo->logo) }}" alt="Logo" />
                 <span
-                    class="self-center text-2xl font-semibold whitespace-nowrap text-gray-900 dark:text-white">{{ $logo->singkatan }}</span>
+                    class="self-center text-2xl font-semibold whitespace-nowrap text-gray-900 dark:text-white">{{ $logo->singkatan_namausaha }}</span>
             </a>
             @empty
             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@
                 </svg>
             </button>
         </div>
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end space-x-4 lg:gap-x-12">
+        <div class="hidden lg:flex lg:gap-x-12">
             <a href="/"
                 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white {{ Request::path()=='/' ? 'active':'' }}">Home</a>
             <a href="/blog"
@@ -41,10 +41,8 @@
                 class="text-sm font-semibold leading-6 text-gray-900 dark:text-white {{ Request::path()=='company' ? 'active':'' }}">Company</a>
         </div>
 
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end space-x-10 " >
-            @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-2 gap-2 text-right z-10">
-                    <button id="theme-toggle" type="button"
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end space-x-4">
+            <button id="theme-toggle" type="button"
                 class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1">
                 <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
@@ -57,17 +55,11 @@
                         fill-rule="evenodd" clip-rule="evenodd"></path>
                 </svg>
             </button>
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+            <a href="{{ route('auth') }}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+                @if (Auth::check()) Hello
+                {{ Auth::user()->fullname }}
+                @else Login | Register @endif
+                <span aria-hidden="true">&rarr;</span></a>
         </div>
 
     </nav>
@@ -113,19 +105,11 @@
                             class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-300  hover:text-black">Company</a>
                     </div>
                     <div class="py-6">
-                        @if (Route::has('login'))
-                        <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                            @auth
-                                <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                            @else
-                                <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                                @endif
-                            @endauth
-                        </div>
-                    @endif
+                        <a href="{{ route('auth') }}"
+                            class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50">
+                            @if (Auth::check()) Hello
+                            {{ Auth::user()->fullname }} @else Login | Register
+                            @endif</a>
                     </div>
 
                 </div>

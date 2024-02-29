@@ -4,7 +4,7 @@ import "toastify-js/src/toastify.css";
 // import "./carousel";
 import Toastify from "toastify-js";
 import TomSelect from "tom-select";
-// import "./toggleButton";
+import "./toggleButton";
 
 window.Toastify = Toastify;
 window.Tom = TomSelect;

@@ -12,14 +12,19 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('Home') }}" wire:navigate :active="request()->routeIs('Home')">
+                        {{ __('Frontend') }}
+                    </x-nav-link>
                     <x-nav-link href="{{ route('dashboard') }}" wire:navigate :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
+                    @if (auth()->user()->role == 'admin')
+
                     <x-nav-link href="{{ route('admin.berita') }}" wire:navigate :active="request()->routeIs('admin.berita')">
                         {{ __('Berita') }}
                     </x-nav-link>
-            
+
                     <x-nav-link href="{{ route('admin.kategori') }}" wire:navigate :active="request()->routeIs('admin.kategori')">
                         {{ __('Tipe Bus') }}
                     </x-nav-link>
@@ -32,10 +37,17 @@
                     <x-nav-link href="{{ route('admin.transaksi') }}" wire:navigate :active="request()->routeIs('admin.transaksi')">
                         {{ __('Transaksi') }}
                     </x-nav-link>
+                    @endif
+                    @if (auth()->user()->role == 'karyawan')
 
-            
+                    <x-nav-link href="{{ route('karyawan.berita1') }}" wire:navigate :active="request()->routeIs('karyawan.berita1')">
+                        {{ __('Berita') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('karyawan.transaksi1') }}" wire:navigate :active="request()->routeIs('karyawan.transaksi1')">
+                        {{ __('Transaksi') }}
+                    </x-nav-link>
+                    @endif
 
-                    
                 </div>
 
             </div>
@@ -147,7 +159,7 @@
                 </div>
             </div>
 
-            
+
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
@@ -168,7 +180,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-          
+
         </div>
 
         <!-- Responsive Settings Options -->
