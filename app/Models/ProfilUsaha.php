@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProfilPererusahaan extends Model
+class ProfilUsaha extends Model
 {
     use HasFactory;
-    protected $fillable =[
+    protected $fillable = [
         'nama_perusahaan',
         'singkatan',
         'visi',
         'isi',
-            'logo',
-            'alamat',
-            'kodepos',
+        'logo',
+        'alamat',
+        'kodepos',
     ];
 
 }

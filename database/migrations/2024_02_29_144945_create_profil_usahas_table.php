@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profil_pererusahaans', function (Blueprint $table) {
+        Schema::create('profil_usahas', function (Blueprint $table) {
             $table->id();
             $table->string('nama_perusahaan');
             $table->string('singkatan');
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('isi');
             $table->string('logo');
             $table->string('alamat');
-            $table->string('kodepos');
+            $table->integer('kodepos');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profil_pererusahaans');
+        Schema::dropIfExists('profil_usahas');
     }
 };

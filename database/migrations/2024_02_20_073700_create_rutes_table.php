@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('kota_asal');
             $table->string('kota_tujuan');
             $table->time('jam_berangkat');
-            $table->string('is_active');
+            $table->boolean('is_active')->default('1');
             $table->timestamps();
         });
     }
