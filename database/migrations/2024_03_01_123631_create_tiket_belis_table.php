@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_transaksi', function (Blueprint $table) {
+        Schema::create('tbl_tiketbeli', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('tiket_id');
+            $table->string('nama_pemesan');
             $table->integer('jumlah_kursi');
             $table->string('nomor_kursi')->nullable();
             $table->string('total_bayar');
             $table->timestamps();
-
-
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_transaksi');
+        Schema::dropIfExists('tbl_tiketbeli');
     }
 };

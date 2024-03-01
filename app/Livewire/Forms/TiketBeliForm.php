@@ -3,14 +3,16 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Tiket;
-use App\Models\Transaksi;
+use App\Models\TiketBeli;
 use App\Models\User;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class TransaksiForm extends Form
+class TiketBeliForm extends Form
 {
-    public ?Transaksi $transaksi;
+
+    public ?TiketBeli $tiketbeli;
 
     public $id;
     #[Rule('required', as: 'User')]
@@ -20,19 +22,21 @@ class TransaksiForm extends Form
     #[Rule('required', as: 'Jumlah Kursi')]
     public $jumlah_kursi;
     #[Rule('required', as: 'Nomor Kursi')]
+    public $nama_pemesan;
     public $nomor_kursi;
     public $total_bayar;
 
-    public function setTransaksi(Transaksi $transaksi): void
+    public function setTiketBeli(TiketBeli $tiketbeli): void
     {
-        $this->transaksi = $transaksi;
+        $this->tiketbeli = $tiketbeli;
 
-        $this->id = $transaksi->id;
-        $this->user = $transaksi->user_id;
-        $this->tiket = $transaksi->tiket_id;
-        $this->jumlah_kursi = $transaksi->jumlah_kursi;
-        $this->nomor_kursi = $transaksi->nomor_kursi;
-        $this->total_bayar = $transaksi->total_bayar;
+        $this->id = $tiketbeli->id;
+        $this->user = $tiketbeli->user_id;
+        $this->tiket = $tiketbeli->tiket_id;
+        $this->jumlah_kursi = $tiketbeli->jumlah_kursi;
+        $this->nama_pemesan = $tiketbeli->nama_pemesan;
+        $this->nomor_kursi = $tiketbeli->nomor_kursi;
+        $this->total_bayar = $tiketbeli->total_bayar;
     }
 
     public function setUser(): array
@@ -70,11 +74,12 @@ class TransaksiForm extends Form
             $tiket->jumlah_tiket -= $this->jumlah_kursi;
             $tiket->save();
 
-            // Simpan transaksi
-            Transaksi::create([
+            // Simpan tiketbeli
+            TiketBeli::create([
                 'user_id' => $this->user,
                 'tiket_id' => $this->tiket,
                 'jumlah_kursi' => $this->jumlah_kursi,
+                'nama_pemesan' => $this->nama_pemesan,
                 'nomor_kursi' => $this->nomor_kursi,
                 'total_bayar' => $this->total_bayar,
             ]);
@@ -88,12 +93,14 @@ class TransaksiForm extends Form
 
     public function update()
     {
-        $this->transaksi->update([
+        $this->tiketbeli->update([
             'user_id' => $this->user,
             'tiket_id' => $this->tiket,
+            'nama_pemesan' => $this->nama_pemesan,
             'jumlah_kursi' => $this->jumlah_kursi,
             'nomor_kursi' => $this->nomor_kursi,
             'total_bayar' => $this->total_bayar,
         ]);
     }
 }
+
