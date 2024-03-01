@@ -1,9 +1,8 @@
-<x-guest-layout>
+<x-app-layout>
     <x-authentication-card>
         <x-slot name="logo">
             <div class="flex flex-row gap-4">
                 <x-authentication-card-logo />
-                <h1 class='text-3xl font-bold'> Moria</h1>
             </div>
         </x-slot>
 
@@ -60,7 +59,7 @@
             </div>
         </form>
     </x-authentication-card>
-</x-guest-layout>
+</x-app-layout>
 
 <script>
     const passwordInput = document.getElementById("password");

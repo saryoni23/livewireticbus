@@ -17,13 +17,25 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Select::make('role')
+                    ->options(User::ROLES)
+                    ->required(),
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\DatePicker::make('tgllahir'),
+                Forms\Components\TextInput::make('no_hp')
+                    ->maxLength(255),
             ]);
     }
 
@@ -31,7 +43,26 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('role'),
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable(),
+                Tables\Columns\ImageColumn::make('profile_photo_path')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('tgllahir')
+                    ->date()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('no_hp')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

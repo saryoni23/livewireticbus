@@ -18,8 +18,11 @@ class DatabaseSeeder extends Seeder
             // RoleSeeder::class,
             // UserSeeder::class,
             // KategoriSeeder::class,
- 
+
         ]);
-        \App\Models\User::factory()->hasUsers(10)->create();
+        // \App\Models\User::factory()->hasUsers(10)->create();
+        \App\Models\Post::factory(100)->create();
+        \App\Models\Category::factory(5)->create();
+
     }
 }

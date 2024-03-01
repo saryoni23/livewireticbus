@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admins\AdminDashboardController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Livewire\Berita\BeritaIndex;
 use App\Livewire\Carosel\CaroselIndex;
 use App\Livewire\Kategori\KategoriIndex;
@@ -28,25 +30,53 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 //     return view('halaman_depan.layout.index');
 // });
 
+Route::get('/', HomeController::class)->name('home');
 
-Route::middleware(['guest'])->group(function(){
+Route::get('/blog', [PostController::class, 'index'])->name('posts.index');
 
-
-
-    Route::get('/',         [Controller::class, 'index'])->name('Home');
-    Route::get('/blog',     [Controller::class, 'blog'])->name('Blog');
-    Route::get('/blog/{id}',  [Controller::class, 'blogshow']);
-    Route::get('/tiket',    [Controller::class, 'tiket'])->name('Tiket');
-    Route::get('/company',  [Controller::class, 'company'])->name('Company');
+Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
 
+Route::get('/language/{locale}', function ($locale) {
+    if (array_key_exists($locale, config('app.supported_locales'))) {
+        session()->put('locale', $locale);
+    }
+
+    return redirect()->back();
+})->name('locale');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
 });
 
 
 
-Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
-    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
-    });
+
+
+// Route::middleware(['guest'])->group(function(){
+
+
+
+//     Route::get('/',         [Controller::class, 'index'])->name('Home');
+//     Route::get('/blog',     [Controller::class, 'blog'])->name('Blog');
+//     Route::get('/blog/{id}',  [Controller::class, 'blogshow']);
+//     Route::get('/tiket',    [Controller::class, 'tiket'])->name('Tiket');
+//     Route::get('/company',  [Controller::class, 'company'])->name('Company');
+
+
+// });
+
+
+
+// Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
+//     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+//     });
 
 
 // Route::redirect('admin','dashboard');
